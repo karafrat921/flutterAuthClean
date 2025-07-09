@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_auth_clean/core/errors/failures.dart';
 
-@singleton
+@LazySingleton()
 class TokenService {
   final FlutterSecureStorage _secureStorage;
   static const _accessTokenKey = 'ACCESS_TOKEN';
