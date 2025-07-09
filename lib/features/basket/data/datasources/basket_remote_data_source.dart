@@ -3,6 +3,7 @@ import 'package:flutter_auth_clean/features/basket/data/requests/add_to_basket_r
 import 'package:flutter_auth_clean/features/basket/data/requests/remove_from_basket_request.dart';
 import 'package:flutter_auth_clean/core/network/dio_client.dart';
 import 'package:flutter_auth_clean/features/basket/domain/entities/basket_item_entity.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class BasketRemoteDataSource {
   Future<BasketItemModel> addToBasket(
@@ -10,6 +11,7 @@ abstract class BasketRemoteDataSource {
   Future<BasketItemModel> removeFromBasket(String itemId, String accessToken);
 }
 
+@LazySingleton(as: BasketRemoteDataSource)
 class BasketRemoteDataSourceImpl implements BasketRemoteDataSource {
   final DioClient dioClient;
 

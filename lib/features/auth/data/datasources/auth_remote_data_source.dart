@@ -3,6 +3,7 @@ import 'package:flutter_auth_clean/features/auth/data/models/auth_model.dart';
 import 'package:flutter_auth_clean/features/auth/data/requests/login_request.dart';
 import 'package:flutter_auth_clean/features/auth/data/requests/refresh_token_request.dart';
 import 'package:flutter_auth_clean/features/auth/data/requests/logout_request.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthModel> login(String email, String password);
@@ -10,6 +11,7 @@ abstract class AuthRemoteDataSource {
   Future<void> logout();
 }
 
+@LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final DioClient dioClient;
 

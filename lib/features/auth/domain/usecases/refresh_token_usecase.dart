@@ -4,7 +4,9 @@ import 'package:flutter_auth_clean/core/usecases/usecase.dart';
 import 'package:flutter_auth_clean/features/auth/domain/entities/auth_entity.dart';
 import 'package:flutter_auth_clean/features/auth/domain/repositories/auth_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class RefreshTokenUseCase implements UseCase<AuthEntity, RefreshTokenParams> {
   final AuthRepository repository;
 
