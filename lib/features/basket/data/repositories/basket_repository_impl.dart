@@ -25,7 +25,7 @@ class BasketRepositoryImpl implements BasketRepository {
       refreshTokenUseCase: refreshTokenUseCase,
       action: (accessToken) async {
         final model = await remoteDataSource.addToBasket(item, accessToken);
-        return model.toEntity();
+        return BasketItemEntity.fromModel(model);
       },
     );
   }
@@ -39,7 +39,7 @@ class BasketRepositoryImpl implements BasketRepository {
       action: (accessToken) async {
         final model =
             await remoteDataSource.removeFromBasket(itemId, accessToken);
-        return model.toEntity();
+        return BasketItemEntity.fromModel(model);
       },
     );
   }

@@ -18,7 +18,7 @@ class AuthRepositoryImpl implements AuthRepository {
       String email, String password) async {
     try {
       final model = await remoteDataSource.login(email, password);
-      final entity = model.toEntity();
+      final entity = AuthEntity.fromModel(model);
       await tokenService.saveTokens(
         accessToken: entity.accessToken,
         refreshToken: entity.refreshToken,
@@ -33,7 +33,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, AuthEntity>> refreshToken(String refreshToken) async {
     try {
       final model = await remoteDataSource.refreshToken(refreshToken);
-      final entity = model.toEntity();
+      final entity = AuthEntity.fromModel(model);
       await tokenService.saveTokens(
         accessToken: entity.accessToken,
         refreshToken: entity.refreshToken,
