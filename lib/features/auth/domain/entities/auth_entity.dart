@@ -1,16 +1,23 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_auth_clean/features/auth/data/models/auth_model.dart';
 
-class AuthEntity extends Equatable {
-  final String accessToken;
-  final String refreshToken;
-  final DateTime expiresAt;
+part 'auth_entity.freezed.dart';
+part 'auth_entity.g.dart';
 
-  const AuthEntity({
-    required this.accessToken,
-    required this.refreshToken,
-    required this.expiresAt,
-  });
+@freezed
+class AuthEntity with _$AuthEntity {
+  const factory AuthEntity({
+    required String accessToken,
+    required String refreshToken,
+    required DateTime expiresAt,
+  }) = _AuthEntity;
 
-  @override
-  List<Object?> get props => [accessToken, refreshToken, expiresAt];
+  factory AuthEntity.fromJson(Map<String, dynamic> json) =>
+      _$AuthEntityFromJson(json);
+
+  factory AuthEntity.fromModel(AuthModel model) => AuthEntity(
+        accessToken: model.accessToken,
+        refreshToken: model.refreshToken,
+        expiresAt: model.expiresAt,
+      );
 }

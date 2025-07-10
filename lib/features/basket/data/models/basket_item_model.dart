@@ -1,27 +1,16 @@
-import 'package:flutter_auth_clean/features/basket/domain/entities/basket_item_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class BasketItemModel {
-  final String id;
-  final String name;
-  final int quantity;
+part 'basket_item_model.freezed.dart';
+part 'basket_item_model.g.dart';
 
-  BasketItemModel({
-    required this.id,
-    required this.name,
-    required this.quantity,
-  });
+@freezed
+class BasketItemModel with _$BasketItemModel {
+  const factory BasketItemModel({
+    required String id,
+    required String name,
+    required int quantity,
+  }) = _BasketItemModel;
 
-  factory BasketItemModel.fromJson(Map<String, dynamic> json) {
-    return BasketItemModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      quantity: json['quantity'] as int,
-    );
-  }
-
-  BasketItemEntity toEntity() => BasketItemEntity(
-        id: id,
-        name: name,
-        quantity: quantity,
-      );
+  factory BasketItemModel.fromJson(Map<String, dynamic> json) =>
+      _$BasketItemModelFromJson(json);
 }

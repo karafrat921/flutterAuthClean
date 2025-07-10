@@ -1,27 +1,16 @@
-import 'package:flutter_auth_clean/features/auth/domain/entities/auth_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AuthModel {
-  final String accessToken;
-  final String refreshToken;
-  final DateTime expiresAt;
+part 'auth_model.freezed.dart';
+part 'auth_model.g.dart';
 
-  AuthModel({
-    required this.accessToken,
-    required this.refreshToken,
-    required this.expiresAt,
-  });
+@freezed
+class AuthModel with _$AuthModel {
+  const factory AuthModel({
+    required String accessToken,
+    required String refreshToken,
+    required DateTime expiresAt,
+  }) = _AuthModel;
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(
-      accessToken: json['access_token'] as String,
-      refreshToken: json['refresh_token'] as String,
-      expiresAt: DateTime.parse(json['expires_at'] as String),
-    );
-  }
-
-  AuthEntity toEntity() => AuthEntity(
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        expiresAt: expiresAt,
-      );
+  factory AuthModel.fromJson(Map<String, dynamic> json) =>
+      _$AuthModelFromJson(json);
 }

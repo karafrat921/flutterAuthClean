@@ -1,16 +1,23 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_auth_clean/features/basket/data/models/basket_item_model.dart';
 
-class BasketItemEntity extends Equatable {
-  final String id;
-  final String name;
-  final int quantity;
+part 'basket_item_entity.freezed.dart';
+part 'basket_item_entity.g.dart';
 
-  const BasketItemEntity({
-    required this.id,
-    required this.name,
-    required this.quantity,
-  });
+@freezed
+class BasketItemEntity with _$BasketItemEntity {
+  const factory BasketItemEntity({
+    required String id,
+    required String name,
+    required int quantity,
+  }) = _BasketItemEntity;
 
-  @override
-  List<Object?> get props => [id, name, quantity];
+  factory BasketItemEntity.fromJson(Map<String, dynamic> json) =>
+      _$BasketItemEntityFromJson(json);
+
+  factory BasketItemEntity.fromModel(BasketItemModel model) => BasketItemEntity(
+        id: model.id,
+        name: model.name,
+        quantity: model.quantity,
+      );
 }
