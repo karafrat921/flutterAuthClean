@@ -7,6 +7,10 @@
 .buildlog/
 .history
 
+# IDE
+.idea/
+.vscode/
+
 
 
 # Flutter repo-specific
@@ -79,6 +83,8 @@ unlinked_spec.ds
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Flutter.podspec
 **/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
 **/ios/Flutter/ephemeral
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
@@ -110,6 +116,11 @@ coverage/
 # Symbols
 app.*.symbols
 
+# Environment files (contains sensitive data)
+.env
+.env.local
+.env.*.local
+
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
 !**/ios/**/default.mode2v3
@@ -117,3 +128,4 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+lib/injection.config.dart
